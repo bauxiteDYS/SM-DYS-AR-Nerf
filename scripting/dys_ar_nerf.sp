@@ -61,7 +61,7 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
   
 	switch (damage)
 	{
-	  case 6.000000:
+	  	case 6.000000:
 		{
 		  // is this okay?
 		}
