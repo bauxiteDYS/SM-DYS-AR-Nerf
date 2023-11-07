@@ -61,13 +61,13 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
   
 	switch (damage)
 	{
-	  	case 6.000000:
+		case 6.000000:
 		{
-		  // is this okay?
+			// is this okay?
 		}
 		case 9.000000:
 		{
-		  // is this okay?
+			// is this okay?
 		}
 		default:
 		{
@@ -86,13 +86,7 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
 	
 	if (StrEqual(sWeapon,"weapon_assault"))
 	{
-		if (damage == 6.000000)
-		{
-			damage = 5.000000;
-			//damage = damage * 0.83;
-			return Plugin_Changed;
-		}
-		else if (damage == 9.000000)
+		if (damage == 9.000000)
 		{
 			damage = 7.000000;
 			//damage = damage * 0.77;
@@ -101,7 +95,7 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
 		else
 		{
 			damage = 5.000000;
-			PrintToServer(" damage was not 6 or 9 ");
+			//damage = damage * 0.83;
 			return Plugin_Changed;
 		}
 	}
