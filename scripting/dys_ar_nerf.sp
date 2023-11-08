@@ -10,7 +10,7 @@ public Plugin myinfo = {
 	name = "Dys AR Nerf",
 	description = "Nerfs Dystopia's Assault Rifle secondary fire",
 	author = "Rain, bauxite",
-	version = "0.1.4",
+	version = "0.1.5",
 	url = "https://github.com/bauxiteDYS/SM-DYS-AR-Nerf",
 };
 
@@ -58,13 +58,13 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
 		return Plugin_Continue;
 	}
 	
-	char sWeapon[14 + 1];
-	
 	if (!IsValidEntity(inflictor))
 	{
 		return Plugin_Continue;
 	}
-	
+
+	char sWeapon[14 + 1];
+
 	if (!GetEntityClassname(inflictor, sWeapon, sizeof(sWeapon)))
 	{
 		return Plugin_Continue;
