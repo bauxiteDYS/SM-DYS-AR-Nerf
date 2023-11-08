@@ -10,7 +10,7 @@ public Plugin myinfo = {
 	name = "Dys AR Nerf",
 	description = "Nerfs Dystopia's Assault Rifle secondary fire",
 	author = "Rain, bauxite",
-	version = "0.1.3",
+	version = "0.1.4",
 	url = "https://github.com/bauxiteDYS/SM-DYS-AR-Nerf",
 };
 
@@ -52,52 +52,43 @@ public void OnClientPutInServer(int client)
 
 public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& damage, int& damagetype, int& weapon, float damageForce[3], float damagePosition[3])
 {	
-  
-  /* Quickly use switch to check if damage is equal to a bodyshot or headshot from AR Secondary fire 
-  ** Which is what we want to modify. If the damage is 6 or 9, it should then check if it's from the AR
-  ** And then change it to something else. If not, then it will not do anything more.
-  ** Using the OnTakeDamageAlive hook seems to produce even more unexpected results.
-  */
-  
-	switch (damage)
+
+	if (damage != 6.000000 && damage != 9.000000)
 	{
-		case 6.000000:
-		{
-			// is this okay?
-		}
-		case 9.000000:
-		{
-			// is this okay?
-		}
-		default:
-		{
-			return Plugin_Continue;
-		}
+		return Plugin_Continue;
 	}
 	
-	char sWeapon[32];
+	char sWeapon[14 + 1];
 	
-	if (IsValidEntity(inflictor))
+	if (!IsValidEntity(inflictor))
 	{
-		GetEntityClassname(inflictor, sWeapon, sizeof(sWeapon));
+		return Plugin_Continue;
 	}
 	
+	if (!GetEntityClassname(inflictor, sWeapon, sizeof(sWeapon)))
+	{
+		return Plugin_Continue;
+	}
+
+	if (!StrEqual(sWeapon,"weapon_assault"))
+	{
+        	return Plugin_Continue;
+    	}
+
 	// The damage numbers here don't seem to always appear as expected in the game for some reason.
 	
-	if (StrEqual(sWeapon,"weapon_assault"))
+	if (damage == 9.000000)
 	{
-		if (damage == 9.000000)
-		{
-			damage = 7.000000;
-			//damage = damage * 0.77;
-			return Plugin_Changed;
-		}
-		else
-		{
-			damage = 5.000000;
-			//damage = damage * 0.83;
-			return Plugin_Changed;
-		}
+		damage = 7.000000;
+		//damage = damage * 0.77;
+		return Plugin_Changed;
 	}
+	else
+	{
+		damage = 5.000000;
+		//damage = damage * 0.83;
+		return Plugin_Changed;
+	}
+	
 	return Plugin_Continue;
 }
