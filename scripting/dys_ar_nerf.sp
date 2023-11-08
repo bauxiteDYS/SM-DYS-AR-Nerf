@@ -58,13 +58,13 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
 		return Plugin_Continue;
 	}
 	
-	char sWeapon[14 + 1];
-	
 	if (!IsValidEntity(inflictor))
 	{
 		return Plugin_Continue;
 	}
-	
+
+	char sWeapon[14 + 1];
+
 	if (!GetEntityClassname(inflictor, sWeapon, sizeof(sWeapon)))
 	{
 		return Plugin_Continue;
