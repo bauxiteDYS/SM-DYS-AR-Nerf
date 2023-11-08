@@ -10,7 +10,7 @@ public Plugin myinfo = {
 	name = "Dys AR Nerf",
 	description = "Nerfs Dystopia's Assault Rifle secondary fire",
 	author = "Rain, bauxite",
-	version = "0.1.6",
+	version = "0.1.7",
 	url = "https://github.com/bauxiteDYS/SM-DYS-AR-Nerf",
 };
 
@@ -71,19 +71,18 @@ public Action OnTakeDamage(int victim, int& attacker, int& inflictor, float& dam
 	}
 
 	// The damage numbers here don't seem to always appear as expected in the game for some reason.
+	// Probably due to some rounding or other things in the game.
 	
 	if (StrEqual(sWeapon,"weapon_assault"))
 	{
 		if (damage == 9.000000)
 		{
 			damage = 7.000000;
-			//damage = damage * 0.77;
 			return Plugin_Changed;
 		}
 		else
 		{
-			damage = 5.000000;
-			//damage = damage * 0.83;
+			damage = 4.950000;
 			return Plugin_Changed;
 		}
   
